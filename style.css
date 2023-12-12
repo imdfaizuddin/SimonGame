@@ -1,0 +1,61 @@
+body {
+    background-color: snow;
+}
+
+main {
+    width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+#heading {
+    margin-top: 40px;
+    margin-bottom: 80px;
+    font-family: "Press Start 2P";
+   
+}
+.headingAnimation{
+    animation: fadeInOut 1s infinite;
+}
+
+@keyframes fadeInOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* styling buttons */
+.btn {
+    border: 5px solid black;
+    border-radius: 8px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 40px;
+    text-align: center;
+    width: 500px;
+    margin: auto;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
