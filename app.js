@@ -17,7 +17,7 @@ body.addEventListener("keydown" , function() {
     gameStart();
 });
 
-function gameStart(params) {
+function gameStart() {
     let n = randomNo();
     if(n===1){
         // blue.classList.remove("blue");
@@ -49,8 +49,25 @@ function gameStart(params) {
         flash("green");
     }
 }
+//add event listeners to all buttons and inside them compare the two arrays systemreq and userseq and if same call gameStart else game over
+let blue = document.querySelector(".blue");
 
-
+blue.addEventListener("click", function(){
+    userSeq.push("blue");
+    let arrSame = true;
+    for(let i=0; i < systemSeq.length ; i++){
+        if(systemSeq[i]== userSeq[i]){
+            continue;
+        }else{
+            arrSame = false;
+        }
+    }
+    if(arrSame){
+        gameStart();
+    }else{
+        console.log("game over");
+    }
+});
 
 //helper functions
 
