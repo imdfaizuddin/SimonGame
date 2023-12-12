@@ -19,6 +19,7 @@ body.addEventListener("keydown" , function() {
 
 function gameStart() {
     let n = randomNo();
+    n=1;
     if(n===1){
         // blue.classList.remove("blue");
         
