@@ -12,9 +12,10 @@ main {
     margin-top: 40px;
     margin-bottom: 80px;
     font-family: "Press Start 2P";
-   
+
 }
-.headingAnimation{
+
+.headingAnimation {
     animation: fadeInOut 1s infinite;
 }
 
@@ -60,6 +61,11 @@ main {
     background-color: green;
 }
 
-.bg--white{
-    background-color: white;
+.bg--white {
+    border: 0;
+}
+
+.shadow--white {
+    box-shadow: 0px 0px 10px 20px white;
+    border: 0;
 }
