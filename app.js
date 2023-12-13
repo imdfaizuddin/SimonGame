@@ -1,5 +1,5 @@
-const systemSeq = [];
-const userSeq = [];
+let systemSeq = [];
+let userSeq = [];
 
 let start = false;
 
@@ -7,19 +7,25 @@ let body = document.querySelector("body");
 
 let btn = document.querySelector(".btn");
 
+let heading = document.querySelector(".headingAnimation");
+let level = 1;
+
 
 body.addEventListener("keydown" , function() {
+    if(level === 1){
     start = true;
-    console.log("activated")
-    let heading = document.querySelector(".headingAnimation");
+    console.log("game started");
     heading.classList.remove("headingAnimation");
-    heading.innerHTML= "Level 1";
+    
     gameStart();
+    }
 });
 
 function gameStart() {
+    heading.innerHTML= `level ${level}`;
+    level++;
     let n = randomNo();
-    n=1;
+    // n=1;
     if(n===1){
         // blue.classList.remove("blue");
         
@@ -49,25 +55,42 @@ function gameStart() {
         // }, 200);
         flash("green");
     }
+    userSeq = [];
 }
 //add event listeners to all buttons and inside them compare the two arrays systemreq and userseq and if same call gameStart else game over
 let blue = document.querySelector(".blue");
+let red = document.querySelector(".red");
+let yellow = document.querySelector(".yellow");
+let green = document.querySelector(".green");
 
 blue.addEventListener("click", function(){
-    userSeq.push("blue");
-    let arrSame = true;
-    for(let i=0; i < systemSeq.length ; i++){
-        if(systemSeq[i]== userSeq[i]){
-            continue;
-        }else{
-            arrSame = false;
-        }
-    }
-    if(arrSame){
-        gameStart();
-    }else{
-        console.log("game over");
-    }
+    // userSeq.push("blue");
+    // let arrSame = true;
+    // for(let i=0; i < systemSeq.length ; i++){
+    //     if(systemSeq[i]== userSeq[i]){
+    //         continue;
+    //     }else{
+    //         arrSame = false;
+    //     }
+    // }
+    // if(arrSame){
+    //     gameStart();
+    // }else{
+    //     console.log("game over");
+    // }
+    storeUserInput("blue");
+});
+
+red.addEventListener("click", function(){
+    storeUserInput("red");
+});
+
+yellow.addEventListener("click", function(){
+    storeUserInput("yellow");
+});
+
+green.addEventListener("click", function(){
+    storeUserInput("green");
 });
 
 //helper functions
@@ -88,3 +111,44 @@ function flash(colorName) {
     systemSeq.push(colorName);
 }
 
+function storeUserInput(colorName){
+    userSeq.push(colorName);
+    for(let i=0; i< userSeq.length ; i++){
+        if(userSeq[i]== systemSeq[i]){
+            continue;
+        }else{
+            console.log("game over");
+            gameOver();
+        }
+    }
+    if(userSeq.length == systemSeq.length){
+        gameStart();
+    }
+}
+
+function gameOver(){
+    systemSeq = [];
+    heading.innerHTML = "Press A key to Start!";
+    heading.classList.add("headingAnimation");
+    level =1;
+}
+
+// function compareInputs(colorName){
+    
+//     userSeq.push(colorName);
+   
+//     let arrSame = true;
+//     for(let i=0; i < systemSeq.length ; i++){
+//         // userSeq[i].push(colorName);
+//         if(systemSeq[i]== userSeq[i]){
+//             continue;
+//         }else{
+//             arrSame = false;
+//         }
+//     }
+//     if(arrSame){
+//         // gameStart();
+//     }else{
+//         // console.log("game over");
+//     }
+// }
