@@ -33,6 +33,7 @@ function gameStart() {
         //     blue.classList.add("blue");
         // }, 200);
         flash("blue");
+        systemSeq.push("blue");
     } else if (n === 2) {
         // red.classList.remove("red");
 
@@ -40,6 +41,7 @@ function gameStart() {
         //     red.classList.add("red");
         // }, 200);
         flash("red");
+        systemSeq.push("red");
     } else if (n === 3) {
         // yellow.classList.remove("yellow");
 
@@ -47,6 +49,7 @@ function gameStart() {
         //     yellow.classList.add("yellow");
         // }, 200);
         flash("yellow");
+        systemSeq.push("yellow");
     } else if (n === 4) {
         // green.classList.remove("green");
 
@@ -54,6 +57,7 @@ function gameStart() {
         //     green.classList.add("green");
         // }, 200);
         flash("green");
+        systemSeq.push("green");
     }
     userSeq = [];
 }
@@ -68,18 +72,22 @@ let green = document.querySelector(".green");
 
 blue.addEventListener("click", function () {
     storeUserInput("blue");
+    flash2("blue");
 });
 
 red.addEventListener("click", function () {
     storeUserInput("red");
+    flash2("red");
 });
 
 yellow.addEventListener("click", function () {
     storeUserInput("yellow");
+    flash2("yellow");
 });
 
 green.addEventListener("click", function () {
     storeUserInput("green");
+    flash2("green");
 });
 
 //helper functions
@@ -97,9 +105,15 @@ function flash(colorName) {
     setTimeout(() => {
         boxName.classList.remove("bg--white")
         boxName.classList.add(colorName);
-    }, 250);
+    }, 400);
+}
 
-    systemSeq.push(colorName);
+function flash2(colorName) {
+    let boxName = document.querySelector(`.${colorName}`);
+    boxName.classList.add("shadow--white");
+    setTimeout(() => {
+        boxName.classList.remove("shadow--white");
+    }, 200);
 }
 
 function storeUserInput(colorName) {
@@ -113,12 +127,14 @@ function storeUserInput(colorName) {
         }
     }
     if (userSeq.length == systemSeq.length) {
-        gameStart();
+        setTimeout(() => {
+            gameStart();
+        }, 800);
     }
 }
 
 function gameOver() {
-    
+
     systemSeq = [];
     heading.innerHTML = "Press A key to Start!";
     heading.classList.add("headingAnimation");
