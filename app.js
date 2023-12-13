@@ -11,45 +11,45 @@ let heading = document.querySelector(".headingAnimation");
 let level = 1;
 
 
-body.addEventListener("keydown" , function() {
-    if(level === 1){
-    start = true;
-    console.log("game started");
-    heading.classList.remove("headingAnimation");
-    
-    gameStart();
+body.addEventListener("keydown", function () {
+    if (level === 1) {
+        start = true;
+        console.log("game started");
+        heading.classList.remove("headingAnimation");
+
+        gameStart();
     }
 });
 
 function gameStart() {
-    heading.innerHTML= `level ${level}`;
+    heading.innerHTML = `level ${level}`;
     level++;
     let n = randomNo();
     // n=1;
-    if(n===1){
-        // blue.classList.remove("blue");
-        
+    if (n === 1) {
+        // blue.classList.remove("blue");   -----------> these commented parts are converted into re-useable function flash();
+
         // setTimeout(() => {
         //     blue.classList.add("blue");
         // }, 200);
         flash("blue");
-    }else if(n===2){
+    } else if (n === 2) {
         // red.classList.remove("red");
-        
+
         // setTimeout(() => {
         //     red.classList.add("red");
         // }, 200);
         flash("red");
-    }else if(n===3){
+    } else if (n === 3) {
         // yellow.classList.remove("yellow");
-        
+
         // setTimeout(() => {
         //     yellow.classList.add("yellow");
         // }, 200);
         flash("yellow");
-    }else if(n===4){
+    } else if (n === 4) {
         // green.classList.remove("green");
-        
+
         // setTimeout(() => {
         //     green.classList.add("green");
         // }, 200);
@@ -57,98 +57,74 @@ function gameStart() {
     }
     userSeq = [];
 }
-//add event listeners to all buttons and inside them compare the two arrays systemreq and userseq and if same call gameStart else game over
+
+//add event listeners to all buttons and inside them push clicked color inside userSeq.
+// compare userSeq with systemSeq and if same Continue else game over
+// after exiting the comparation loop check if length of systemSeq is == userSeq if yes level up.
 let blue = document.querySelector(".blue");
 let red = document.querySelector(".red");
 let yellow = document.querySelector(".yellow");
 let green = document.querySelector(".green");
 
-blue.addEventListener("click", function(){
-    // userSeq.push("blue");
-    // let arrSame = true;
-    // for(let i=0; i < systemSeq.length ; i++){
-    //     if(systemSeq[i]== userSeq[i]){
-    //         continue;
-    //     }else{
-    //         arrSame = false;
-    //     }
-    // }
-    // if(arrSame){
-    //     gameStart();
-    // }else{
-    //     console.log("game over");
-    // }
+blue.addEventListener("click", function () {
     storeUserInput("blue");
 });
 
-red.addEventListener("click", function(){
+red.addEventListener("click", function () {
     storeUserInput("red");
 });
 
-yellow.addEventListener("click", function(){
+yellow.addEventListener("click", function () {
     storeUserInput("yellow");
 });
 
-green.addEventListener("click", function(){
+green.addEventListener("click", function () {
     storeUserInput("green");
 });
 
 //helper functions
 
 function randomNo() {
-    let r = Math.floor((Math.random()*4)+1);
+    let r = Math.floor((Math.random() * 4) + 1);
     return r;
 }
 
 function flash(colorName) {
     let boxName = document.querySelector(`.${colorName}`);
     boxName.classList.remove(colorName);
-        
-        setTimeout(() => {
-            boxName.classList.add(colorName);
-        }, 200);
+    boxName.classList.add("bg--white");
+
+    setTimeout(() => {
+        boxName.classList.remove("bg--white")
+        boxName.classList.add(colorName);
+    }, 250);
 
     systemSeq.push(colorName);
 }
 
-function storeUserInput(colorName){
+function storeUserInput(colorName) {
     userSeq.push(colorName);
-    for(let i=0; i< userSeq.length ; i++){
-        if(userSeq[i]== systemSeq[i]){
+    for (let i = 0; i < userSeq.length; i++) {
+        if (userSeq[i] == systemSeq[i]) {
             continue;
-        }else{
+        } else {
             console.log("game over");
             gameOver();
         }
     }
-    if(userSeq.length == systemSeq.length){
+    if (userSeq.length == systemSeq.length) {
         gameStart();
     }
 }
 
-function gameOver(){
+function gameOver() {
+    
     systemSeq = [];
     heading.innerHTML = "Press A key to Start!";
     heading.classList.add("headingAnimation");
-    level =1;
+    level = 1;
+    body.style.backgroundColor = "red";
+    setTimeout(() => {
+        body.style.backgroundColor = "antiquewhite";
+    }, 100);
 }
-
-// function compareInputs(colorName){
-    
-//     userSeq.push(colorName);
-   
-//     let arrSame = true;
-//     for(let i=0; i < systemSeq.length ; i++){
-//         // userSeq[i].push(colorName);
-//         if(systemSeq[i]== userSeq[i]){
-//             continue;
-//         }else{
-//             arrSame = false;
-//         }
-//     }
-//     if(arrSame){
-//         // gameStart();
-//     }else{
-//         // console.log("game over");
-//     }
-// }
