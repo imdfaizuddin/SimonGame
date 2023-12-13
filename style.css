@@ -1,5 +1,5 @@
 body {
-    background-color: snow;
+    background-color: antiquewhite;
 }
 
 main {
@@ -58,4 +58,8 @@ main {
 
 .green {
     background-color: green;
+}
+
+.bg--white{
+    background-color: white;
 }
