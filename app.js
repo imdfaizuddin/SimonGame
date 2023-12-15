@@ -27,35 +27,21 @@ function gameStart() {
     let n = randomNo();
     // n=1;
     if (n === 1) {
-        // blue.classList.remove("blue");   -----------> these commented parts are converted into re-useable function flash();
-
-        // setTimeout(() => {
-        //     blue.classList.add("blue");
-        // }, 200);
+       
         flash("blue");
         systemSeq.push("blue");
-    } else if (n === 2) {
-        // red.classList.remove("red");
 
-        // setTimeout(() => {
-        //     red.classList.add("red");
-        // }, 200);
+    } else if (n === 2) {
+        
         flash("red");
         systemSeq.push("red");
-    } else if (n === 3) {
-        // yellow.classList.remove("yellow");
 
-        // setTimeout(() => {
-        //     yellow.classList.add("yellow");
-        // }, 200);
+    } else if (n === 3) {
+        
         flash("yellow");
         systemSeq.push("yellow");
-    } else if (n === 4) {
-        // green.classList.remove("green");
 
-        // setTimeout(() => {
-        //     green.classList.add("green");
-        // }, 200);
+    } else if (n === 4) {
         flash("green");
         systemSeq.push("green");
     }
