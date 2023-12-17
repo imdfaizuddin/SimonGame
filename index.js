@@ -7,7 +7,7 @@ let btns = ["blue","red","yellow","green"];
 let started = false;
 let level = 0;
 
-let h1 = document.querySelector("h1");
+let h1 = document.querySelector("#heading");
 
 document.addEventListener("keydown", function () {
     if(started == false){
@@ -25,7 +25,7 @@ function btnFlash(btn){
     }, 400);
 }
 
-function levelUp(){
+function levelUp(){                     
     level++;
     h1.innerText = `Level ${level}`;
 
@@ -34,11 +34,12 @@ function levelUp(){
     let randombtn = document.querySelector(`.${randomColor}`);
     gameSeq.push(randomColor);
     btnFlash(randombtn);
+    playAudio(`./sounds/${randomColor}.mp3`);
     userSeq = [];
 }
 
 function checkAns(idx){
-    // let idx = level-1;
+    
     if(userSeq[idx] === gameSeq[idx]){
         if(userSeq.length == gameSeq.length){
             setTimeout(() => {
@@ -50,7 +51,7 @@ function checkAns(idx){
     }
 }
 
-function userFlash(btn){
+function userFlash(btn){            
     btn.classList.add("shadow--white");
     setTimeout(() => {
         btn.classList.remove("shadow--white");
