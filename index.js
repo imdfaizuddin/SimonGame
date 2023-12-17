@@ -1,6 +1,7 @@
 let gameSeq = [];
 let userSeq = [];
 
+let body = document.querySelector("body");
 let btns = ["blue","red","yellow","green"];
 
 let started = false;
@@ -21,14 +22,14 @@ function btnFlash(btn){
     btn.classList.add("bg--white");
     setTimeout(() => {
         btn.classList.remove("bg--white");
-    }, 300);
+    }, 400);
 }
 
 function levelUp(){
     level++;
     h1.innerText = `Level ${level}`;
 
-    let randomIndex = Math.floor(Math.random()*3);
+    let randomIndex = Math.floor(Math.random()*4);
     let randomColor = btns[randomIndex];
     let randombtn = document.querySelector(`.${randomColor}`);
     gameSeq.push(randomColor);
@@ -62,6 +63,7 @@ function btnPress(){
    let userColor = btn.getAttribute("id");
    userSeq.push(userColor);
    checkAns(userSeq.length-1);
+   playAudio(`./sounds/${btn.id}.mp3`);
 }
 
 let allBtns = document.querySelectorAll(".btn");
@@ -69,10 +71,18 @@ for(btn of allBtns){
     btn.addEventListener("click", btnPress);
 }
 
+function playAudio(url) {
+    new Audio(url).play();
+  }
+
 function gameOver(){
     level = 0;
     gameSeq = [];
     userSeq =[];
     started = false;
-    h1.innerText = `Press A key to start`;
+    h1.innerHTML = `Game Over! </br> Press A key to start`;
+    body.style.backgroundColor = "red";
+    setTimeout(() => {
+        body.style.backgroundColor = "antiquewhite";
+    }, 100);
 }
