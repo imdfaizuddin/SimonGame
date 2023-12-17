@@ -76,6 +76,7 @@ function playAudio(url) {
   }
 
 function gameOver(){
+    playAudio(`./sounds/wrong.mp3`);
     level = 0;
     gameSeq = [];
     userSeq =[];
