@@ -7,7 +7,7 @@ A simple Simon Says game implemented using HTML, CSS, and JavaScript.
 - [Key Features](#key-features)
 - [Technologies Used](#technologies-used)
 - [How to Play](#how-to-play)
-- [Deployed Link](#-Deployed-Link)
+- [Deployed Link](#Deployed-Link)
 
 
 ## Introduction
