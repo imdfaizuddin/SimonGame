@@ -30,7 +30,7 @@ This project is a web-based implementation of the classic Simon Says game. The g
 ## How to Play
 
 1. **Start the Game:**
-   - Press the 'A' key to initiate the game.
+   - Press the a key to initiate the game.
    
 2. **Gameplay:**
    - A random color will flash, indicating the sequence.
